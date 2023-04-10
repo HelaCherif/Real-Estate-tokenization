@@ -1,7 +1,7 @@
 import {Button, Card, CardBody, CardFooter, CardHeader, Heading, SimpleGrid, Text} from "@chakra-ui/react";
 import {DeleteIcon, EditIcon, ExternalLinkIcon} from '@chakra-ui/icons'
 import {useAccount, useContractWrite, usePrepareContractWrite, useProvider} from 'wagmi'
-import RealEstate from "../../abi/RealEstate.js";
+import {abi} from "../../abi/RealEstate.js";
 import {useEffect, useState} from "react";
 import {getContract} from '@wagmi/core'
 
@@ -16,7 +16,7 @@ function Table1() {
 
     const contract = getContract({
         address: contractAddress,
-        abi: RealEstate.abi,
+        abi: abi,
         signerOrProvider: provider
     })
 
@@ -28,16 +28,7 @@ function Table1() {
 
     const {config} = usePrepareContractWrite({
         address: contractAddress,
-        abi: RealEstate.abi,
-        chainId: 31337,
-        functionName: 'deleteProperty',
-        signerOrProvider: provider,
-        args: []
-    })
-
-    const {config} = usePrepareContractWrite({
-        address: contractAddress,
-        abi: RealEstate.abi,
+        abi: abi,
         chainId: 31337,
         functionName: 'deleteProperty',
         signerOrProvider: provider,

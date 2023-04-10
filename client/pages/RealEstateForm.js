@@ -28,7 +28,7 @@ import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import {useAccount, useContractWrite, usePrepareContractWrite, useProvider} from 'wagmi'
 import {BigNumber} from "ethers";
-import {  propertiesAddress } from "../abi/RealEstate";
+import {abi, propertiesAddress} from "../abi/RealEstate";
 
 function RealEstateForm() {
 
@@ -51,7 +51,7 @@ function RealEstateForm() {
 
     const {config} = usePrepareContractWrite({
         address: propertiesAddress,
-        abi: RealEstate.abi,
+        abi: abi,
         chainId: 31337,
         functionName: 'addProperty',
         signerOrProvider: provider,
@@ -67,14 +67,6 @@ function RealEstateForm() {
             console.log("hererr " + param1.length)
         },
     })
-
-    useEffect(() => {
-        if(param1) {
-            console.log("param1")
-            setParam2(param1);
-        }
-    }, [param1,param2])
-
 
     const {write : mint} = useContractWrite({
         ...config,
