@@ -39,5 +39,9 @@ In a separate terminal execute:
 ### 4. Start Hardhat node
 
 Link of server CI/CD : https://github.com/HelaCherif/Real-Estate-tokenization/actions
+
 Sepolia BC link : https://sepolia.etherscan.io/address/0xbBb34c6D0738F8Bf9e82514CCA00878c11178855
+
 Vercel link : https://real-estate-tokenization-lwk3.vercel.app/
+
+Video link : https://www.loom.com/share/d46d735db33946459b42f2862f7306f6
