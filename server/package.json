@@ -3,6 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "clean": "npx hardhat clean",
+    "lint": "solhint contracts/**/*.sol",
+    "build": "npx hardhat compile",
+    "test": "npx hardhat test --no-compile",
+    "coverage": "npx hardhat coverage",
+    "deploy": "npx hardhat deploy"
+  },
   "devDependencies": {
     "@ethersproject/abi": "^5.4.7",
     "@ethersproject/providers": "^5.4.7",
