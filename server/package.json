@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "clean": "npx hardhat clean",
+    "lint": "solhint contracts/**/*.sol",
     "build": "npx hardhat compile",
     "test": "npx hardhat test",
     "coverage": "npx hardhat coverage",
@@ -30,7 +31,9 @@
     "typechain": "^8.1.0"
   },
   "dependencies": {
+    "@nomicfoundation/solidity-analyzer": "^0.1.1",
     "@openzeppelin/test-helpers": "^0.5.16",
+    "solhint": "^3.4.1",
     "wagmi": "^0.12.10"
   }
 }
