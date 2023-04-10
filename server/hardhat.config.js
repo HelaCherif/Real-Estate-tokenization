@@ -11,6 +11,7 @@ module.exports = {
         sepolia: {
             url: `https://sepolia.infura.io/v3/${INFURA_ID}`,
             chainId: 11155111,
+            accounts: ["0xea6b287ee4fc4dd266739ef3bf6fca8e6b04bf5c40ed78d61839c28a14653fac"]
         },
         goerli: {
             url: `https://goerli.infura.io/v3/${INFURA_ID}`,
