@@ -67,7 +67,7 @@ contract RealEstate is Ownable, ERC721 {
      * @param _id of the property
      * @return property
      */
-    function getProperty(uint _id) private view returns (Property memory) {
+    function getProperty(uint _id) public view returns (Property memory) {
         return allProperties[_id];
     }
 
@@ -76,7 +76,7 @@ contract RealEstate is Ownable, ERC721 {
      * @param _id of the token
      * @return token
      */
-    function getToken(uint _id) private view returns (Token memory) {
+    function getToken(uint _id) public view returns (Token memory) {
         return allTokens[_id];
     }
 
@@ -84,62 +84,62 @@ contract RealEstate is Ownable, ERC721 {
 
     /**
      * @dev Emit an event when the property is added
-     * @param _id of the property
+     * @param id of the property
      * @return Event PropertyAdded
      */
-    event PropertyAdded(uint _id);
+    event PropertyAdded(uint id);
 
     /**
      * @dev Emit an event when the property is updated
-     * @param _id of the property
+     * @param id of the property
      * @return Event PropertyUpdated
      */
-    event PropertyUpdated(uint _id);
+    event PropertyUpdated(uint id);
 
     /**
      * @dev Emit an event when the property is deleted
-     * @param _id of the property
+     * @param id of the property
      * @return Event PropertyDeleted
      */
-    event PropertyDeleted(uint _id);
+    event PropertyDeleted(uint id);
 
     /**
      * @dev Emit an event when the property is published (ready to be minted)
-     * @param _id of the property
+     * @param id of the property
      * @return Event PropertyPublished
      */
-    event PropertyPublished(uint _id);
+    event PropertyPublished(uint id);
 
     /**
      * @dev Emit an event when the Token NFT is minted
-     * @param _to of address of the owner
-     * @param _tokenId of the Token
+     * @param to of address of the owner
+     * @param tokenId of the Token
      * @return Event MintToken
      */
-    event MintToken(address indexed _to, uint _tokenId);
+    event MintToken(address indexed to, uint tokenId);
 
     /**
      * @dev Emit an event when the Property is fully NFT minted
-     * @param _to of address of the owner
-     * @param _tokens list of tokens minted
+     * @param to of address of the owner
+     * @param tokens list of tokens minted
      * @return Event MintProperty
      */
-    event MintProperty(address indexed _to, Token[] _tokens);
+    event MintProperty(address indexed to, Token[] tokens);
 
     /**
      * @dev Emit an event when the NFT token is transferred
-     * @param _to of address of the owner
-     * @param _tokenId transferred
+     * @param to of address of the owner
+     * @param tokenId transferred
      * @return Event TransferToken
      */
-    event TransferToken(address indexed _to, uint _tokenId);
+    event TransferToken(address indexed to, uint tokenId);
 
     /**
     * @dev Emit an event when a new client is added
-     * @param _addr transferred
+     * @param addr transferred
      * @return Event ClientAdded
      */
-    event ClientAddedAndApproved(address _addr);
+    event ClientAddedAndApproved(address addr);
 
     // :::::::::::::::::::::::::::: FUNCTIONS :::::::::::::::::::::::: //
 
@@ -152,9 +152,9 @@ contract RealEstate is Ownable, ERC721 {
         require(keccak256(abi.encode(_property.name)) != keccak256(abi.encode("")),
             'The name of the property is mandatory');
         require(_property.financialInfos.propertyPrice > 0,
-            'The price of the property should be superior to 0 ');
+            'The price of the property should be superior to 0');
         require(_property.financialInfos.tokensNumber > 0,
-            'The token number of the property should be superior to 0 ');
+            'The token number of the property should be superior to 0');
         _property.id = _propertyId.current();
         allProperties.push(_property);
         _propertyId.increment();
@@ -204,7 +204,7 @@ contract RealEstate is Ownable, ERC721 {
             Token memory token;
             token.id = _tokenIds.current();
             token.ownerAddress = msg.sender;
-            token.name = " Real Estate NFT";
+            token.name = "Real Estate NFT";
             token.propertyId = _id;
             token.url = baseURI();
             allTokens.push(token);
@@ -233,11 +233,10 @@ contract RealEstate is Ownable, ERC721 {
         Token memory token = getToken(_tokenId);
         Property memory property = getProperty(token.propertyId);
         require(msg.value >= property.financialInfos.tokenPrice, "Insufficient Funds");
-        // First transaction for this client so we should approved him
+        // First transaction for this client so we should approved him to use all NFT
         if (clientsTokens[_to].length == 0) {
             approveClient(_to);
         }
-        clientsTokens[_to].push(token);
         approve(_to, _tokenId);
         safeTransferFrom(msg.sender, _to, _tokenId, "0x");
         //Change the owner of the token

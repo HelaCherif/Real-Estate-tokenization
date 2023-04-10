@@ -7,7 +7,7 @@
     "clean": "npx hardhat clean",
     "lint": "solhint contracts/**/*.sol",
     "build": "npx hardhat compile",
-    "test": "npx hardhat test --no-compile",
+    "test": "npx hardhat test",
     "coverage": "npx hardhat coverage",
     "deploy": "npx hardhat deploy"
   },
@@ -26,11 +26,12 @@
     "dotenv": "^16.0.3",
     "ethers": "^5.4.7",
     "hardhat": "^2.11.1",
-    "hardhat-gas-reporter": "^1.0.8",
+    "hardhat-gas-reporter": "^1.0.9",
     "solidity-coverage": "^0.8.0",
     "typechain": "^8.1.0"
   },
   "dependencies": {
+    "@openzeppelin/test-helpers": "^0.5.16",
     "wagmi": "^0.12.10"
   }
 }

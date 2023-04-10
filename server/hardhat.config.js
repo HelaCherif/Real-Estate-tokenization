@@ -6,8 +6,7 @@ const {INFURA_ID} = process.env;
 module.exports = {
     networks: {
         localhost: {
-            url: "http://127.0.0.1:8545",
-            chainId: 31337,
+            url: "http://localhost:8545/",
         },
         sepolia: {
             url: `https://sepolia.infura.io/v3/${INFURA_ID}`,
@@ -28,6 +27,7 @@ module.exports = {
         }
     },
     gasReporter: {
+        enabled: true,
         currency: 'CHF',
         gasPrice: 21
     }
