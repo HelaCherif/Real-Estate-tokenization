@@ -1,30 +1,34 @@
-import {useAccount} from 'wagmi'
+import {useAccount, useContractRead} from 'wagmi'
 import {Alert, AlertIcon, Box, Button} from '@chakra-ui/react'
 import Layout from "../components/Layout/Layout";
 import Link from "next/link";
-import Table1 from "../components/Layout/Table";
+import Table from "../components/Layout/Table";
 import {useEffect, useState} from "react";
-import {Account} from "../components/Header/Account";
+import {abi, propertiesAddress} from "../abi/RealEstate";
 
 export default function Home() {
 
     const [isConnected, setIsConnected] = useState(false);
-    const [propertiesEvents, setPropertiesEvents] = useState([]);
-    const [id, setId] = useState("1");
-    const {address,signer} = useAccount();
+    const {address} = useAccount();
 
     useEffect(() => {
         setIsConnected(!!address);
     }, [address]);
 
+    const creator1 = useContractRead({
+        address: propertiesAddress,
+        abi: abi,
+        chainId: 31337,
+        functionName: "creator"
+    });
+
     return (
         <>
-            <Account/>
             <Layout>
                 {isConnected ? (
                     <Box>
-                        <Button><Link href="/RealEstateForm">Add new property</Link></Button>
-                        <Table1/>
+                        <Button hidden={creator1.data !== address}><Link href="/RealEstateForm">Add new property</Link></Button>
+                        <Table address={address}/>
                     </Box>
 
                 ) : (
@@ -37,5 +41,5 @@ export default function Home() {
                 )}
             </Layout>
         </>
-    )
+    );
 }

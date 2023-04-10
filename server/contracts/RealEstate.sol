@@ -54,11 +54,14 @@ contract RealEstate is Ownable, ERC721 {
     mapping(address => Token[]) public clientsTokens;
     Property[] public allProperties;
     Token[] public allTokens;
+    address public creator;
 
 
     // ::::::::::::::::::::::::::::: CONSTRUCTOR :::::::::::::::::::::::::: //
 
-    constructor() ERC721("RealEstate", "RealEstate") payable {}
+    constructor() ERC721("RealEstate", "RealEstate") payable {
+        creator=msg.sender;
+    }
 
     // ::::::::::::::::::::::::::::::: GETTERS ::::::::::::::::::::::::::::: //
 
@@ -78,6 +81,15 @@ contract RealEstate is Ownable, ERC721 {
      */
     function getToken(uint _id) public view returns (Token memory) {
         return allTokens[_id];
+    }
+
+
+    function getAllProperties() public view returns( Property[] memory){
+        return allProperties;
+    }
+
+    function getAllTokens() public view returns(Token[] memory){
+        return allTokens;
     }
 
     // ::::::::::::::::::::::::::::::: EVENTS :::::::::::::::::::::::::::::: //

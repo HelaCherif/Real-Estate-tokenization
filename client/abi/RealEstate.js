@@ -1,4 +1,4 @@
-export const propertiesAddress = "0x30e42994f6B60e73efEFcDCBB279D89f88c3a53c";
+export const propertiesAddress = "0x4A679253410272dd5232B3Ff7cF5dbB88f295319";
 
 export const abi = [
     {
@@ -564,6 +564,19 @@ export const abi = [
         "type": "function"
     },
     {
+        "inputs": [],
+        "name": "creator",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "inputs": [
             {
                 "internalType": "uint256",
@@ -574,6 +587,135 @@ export const abi = [
         "name": "deleteProperty",
         "outputs": [],
         "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getAllProperties",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "id",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "name",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "description",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "isPublished",
+                        "type": "bool"
+                    },
+                    {
+                        "components": [
+                            {
+                                "internalType": "uint256",
+                                "name": "postalCode",
+                                "type": "uint256"
+                            },
+                            {
+                                "internalType": "string",
+                                "name": "addr",
+                                "type": "string"
+                            },
+                            {
+                                "internalType": "string",
+                                "name": "city",
+                                "type": "string"
+                            },
+                            {
+                                "internalType": "string",
+                                "name": "complementAddress",
+                                "type": "string"
+                            }
+                        ],
+                        "internalType": "struct RealEstate.PropertyAddress",
+                        "name": "propertyAddress",
+                        "type": "tuple"
+                    },
+                    {
+                        "components": [
+                            {
+                                "internalType": "uint256",
+                                "name": "tokensNumber",
+                                "type": "uint256"
+                            },
+                            {
+                                "internalType": "uint256",
+                                "name": "annualYield",
+                                "type": "uint256"
+                            },
+                            {
+                                "internalType": "uint256",
+                                "name": "propertyPrice",
+                                "type": "uint256"
+                            },
+                            {
+                                "internalType": "uint256",
+                                "name": "tokenPrice",
+                                "type": "uint256"
+                            }
+                        ],
+                        "internalType": "struct RealEstate.FinancialInfos",
+                        "name": "financialInfos",
+                        "type": "tuple"
+                    }
+                ],
+                "internalType": "struct RealEstate.Property[]",
+                "name": "",
+                "type": "tuple[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getAllTokens",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "id",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "propertyId",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "ownerAddress",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "name",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "url",
+                        "type": "string"
+                    }
+                ],
+                "internalType": "struct RealEstate.Token[]",
+                "name": "",
+                "type": "tuple[]"
+            }
+        ],
+        "stateMutability": "view",
         "type": "function"
     },
     {
